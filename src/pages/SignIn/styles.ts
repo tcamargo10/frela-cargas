@@ -4,8 +4,15 @@ import { Form } from "@unform/mobile";
 export const Container = styled.View`
     flex: 1;
     align-items: center;
-    justify-content: center;
     padding: 0 30px;
+    background-color: white;
+`;
+
+export const Logo = styled.Image`
+    height: 100px;
+    width: 100px;
+    margin-bottom: 20px;
+    margin-top: 80px;
 `;
 
 export const Title = styled.Text`
@@ -18,4 +25,14 @@ export const FormSignIn = styled(Form)`
     width: 100%;
     align-items: center;
     justify-content: center;
+`;
+
+export const AreaRegister = styled.TouchableOpacity`
+    margin-top: 16px;
+    padding: 10px;
+`;
+
+export const Register = styled.Text`
+    font-size: 15px;
+    color: gray;
 `;

@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
     flex: 1;
     background: #e5e5e5;
 `;
@@ -34,7 +34,7 @@ export const Contain = styled.View`
 `;
 
 export const ClienteInfo = styled.View`
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #a9a9a9;
     background-color: white;
 `;
@@ -46,27 +46,50 @@ export const Nome = styled.Text`
 
 export const Empresa = styled.Text`
     font-size: 16px;
+    margin-bottom: 10px;
 `;
 
 export const AreaTel = styled.View`
-    flex-direction: row;
     justify-content: space-between;
     margin-top: 15px;
     margin-bottom: 5px;
+    justify-content: center;
+    align-items: center;
 `;
 
-export const Boxtel = styled.View`
+export const Boxtel = styled.TouchableOpacity`
+    width: 70%;
     flex-direction: row;
+    border: 1px solid #a9a9a9;
+    border-radius: 40px;
+    padding: 18px 55px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    margin-top: 10px;
+`;
+
+export const Boxdata = styled.View`
+    flex-direction: row;
+    margin-top: 6px;
+`;
+
+export const Criado = styled.Text`
+    font-size: 16px;
+    margin-left: 8px;
+`;
+
+export const Expira = styled.Text`
+    font-size: 16px;
+    margin-left: 8px;
 `;
 
 export const Fixo = styled.Text`
-    font-size: 14px;
-    margin-left: 7px;
+    font-size: 18px;
 `;
 
 export const Whats = styled.Text`
-    font-size: 14px;
-    margin-left: 10px;
+    font-size: 18px;
 `;
 
 export const ProductInfo = styled.View`

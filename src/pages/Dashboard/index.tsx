@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import IconFA from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
@@ -37,11 +38,13 @@ export interface Product {
 
 const Dashboard: React.FC = () => {
     const navigation = useNavigation();
+    const [loading, setloading] = useState(true);
     const [products, setProducts] = useState<Product[]>([]);
     const numColumns = 1;
 
     useEffect(() => {
         setProducts(dados);
+        setloading(false);
     }, []);
 
     return (
@@ -61,51 +64,55 @@ const Dashboard: React.FC = () => {
                 </ActionButton>
             </Header>
 
-            <ProductsList
-                data={products}
-                keyExtractor={item => item._id}
-                numColumns={numColumns}
-                renderItem={({ item }: { item: products }) => (
-                    <ProductContainer
-                        onPress={() => navigation.navigate("Details")}
-                    >
-                        <ProductInfo>
-                            <AreaName>
-                                <ProductName>{item.titulo}</ProductName>
-                            </AreaName>
-                            <ContainerAdress>
-                                <AreaAdress>
-                                    <TitleAddress>Origem</TitleAddress>
-                                    <ProductColeta>
-                                        {`${item.partida.estado} - ${
-                                            item.partida.cidade
-                                        }`}
-                                    </ProductColeta>
-                                    <ProductColeta>
-                                        {item.partida.endereco}
-                                    </ProductColeta>
-                                </AreaAdress>
-                                <AreaAdress>
-                                    <TitleAddress>Destino</TitleAddress>
-                                    <ProductDestino>
-                                        {`${item.destino.estado} - ${
-                                            item.destino.cidade
-                                        }`}
-                                    </ProductDestino>
-                                    <ProductDestino>
-                                        {item.destino.endereco}
-                                    </ProductDestino>
-                                </AreaAdress>
-                            </ContainerAdress>
-                            <ProductMeta>
-                                <ProductMetaPrice>
-                                    {`R$ ${item.preco}`}
-                                </ProductMetaPrice>
-                            </ProductMeta>
-                        </ProductInfo>
-                    </ProductContainer>
-                )}
-            />
+            {!loading ? (
+                <ProductsList
+                    data={products}
+                    keyExtractor={item => item._id}
+                    numColumns={numColumns}
+                    renderItem={({ item }: { item: products }) => (
+                        <ProductContainer
+                            onPress={() => navigation.navigate("Details")}
+                        >
+                            <ProductInfo>
+                                <AreaName>
+                                    <ProductName>{item.titulo}</ProductName>
+                                </AreaName>
+                                <ContainerAdress>
+                                    <AreaAdress>
+                                        <TitleAddress>Origem</TitleAddress>
+                                        <ProductColeta>
+                                            {`${item.partida.estado} - ${
+                                                item.partida.cidade
+                                            }`}
+                                        </ProductColeta>
+                                        <ProductColeta>
+                                            {item.partida.endereco}
+                                        </ProductColeta>
+                                    </AreaAdress>
+                                    <AreaAdress>
+                                        <TitleAddress>Destino</TitleAddress>
+                                        <ProductDestino>
+                                            {`${item.destino.estado} - ${
+                                                item.destino.cidade
+                                            }`}
+                                        </ProductDestino>
+                                        <ProductDestino>
+                                            {item.destino.endereco}
+                                        </ProductDestino>
+                                    </AreaAdress>
+                                </ContainerAdress>
+                                <ProductMeta>
+                                    <ProductMetaPrice>
+                                        {`R$ ${item.preco}`}
+                                    </ProductMetaPrice>
+                                </ProductMeta>
+                            </ProductInfo>
+                        </ProductContainer>
+                    )}
+                />
+            ) : (
+                <ActivityIndicator size="large" color="#ddd" />
+            )}
         </Container>
     );
 };

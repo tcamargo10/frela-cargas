@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 
 import getValidationErros from "../../utils/getValidationErros";
 
-import { Container, Title, FormSignIn } from "./styles";
+import { Container, Title, FormSignIn, Logo, AreaRegister, Register } from "./styles";
 
 interface SignInFormData {
     email: string;
@@ -50,6 +50,11 @@ const SignIn: React.FC = () => {
 
     return ( 
         <Container>
+            <Logo
+                source={require("../../../assets/logo.png")}
+                resizeMode="contain"
+            />
+            
             <Title>Faça seu Login</Title>
             <FormSignIn ref={formRef} onSubmit={handleSubmit}>
                 <Input 
@@ -73,6 +78,9 @@ const SignIn: React.FC = () => {
                     onSubmitEditing={()=>formRef.current?.submitForm()} />
                 <Button onPress={()=>formRef.current?.submitForm()}>Entrar</Button>
             </FormSignIn>
+            <AreaRegister onPress={() => navigation.navigate("Register")}>
+                <Register>Ainda não tenho cadastro.</Register>
+            </AreaRegister>
         </Container>
     );
 };
