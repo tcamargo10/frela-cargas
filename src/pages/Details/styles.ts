@@ -1,7 +1,4 @@
-import { FlatList } from "react-native";
 import styled from "styled-components/native";
-import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { Product } from "./index";
 
 export const Container = styled.View`
     flex: 1;
@@ -30,21 +27,22 @@ export const Logo = styled.Image`
     width: 100px;
 `;
 
-export const ProductsList = styled(FlatList as new () => FlatList<
-    Product
->).attrs({
-    showsVerticalScrollIndicator: false,
-})`
+export const Contain = styled.View`
     flex: 1;
-    padding: 16px;
+    padding: 20px;
 `;
 
-export const ProductContainer = styled.TouchableOpacity`
-    background: white;
-    border-radius: 15px;
-    align-items: center;
-    margin-bottom: 20px;
-`;
+export const ClienteInfo = styled.View``;
+
+export const Nome = styled.Text``;
+
+export const Empresa = styled.Text``;
+
+export const AreaTel = styled.View``;
+
+export const Fixo = styled.Text``;
+
+export const Whats = styled.Text``;
 
 export const ProductInfo = styled.View`
     flex: 1;

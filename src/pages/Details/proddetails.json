@@ -1,0 +1,23 @@
+{
+    "_id": "5f1c6a21022a057c54496ea5",
+    "name": "Luiz Eduardo Cardozo",
+    "nomeDaEmpresa": "Transporte fácil",
+    "telefone": {
+        "fixo": "2225326689",
+        "whatsapp": "2298756634"
+    },
+    "titulo": "Transporte de materiais de confeccao",
+    "partida": {
+        "estado": "RJ",
+        "cidade": "Nova Friburgo",
+        "endereco": "Rua Sara Braunes"
+    },
+    "destino": {
+        "estado": "RJ",
+        "cidade": "Bom Jardim",
+        "endereco": "Av Varginha"
+    },
+    "preco": "270/ton",
+    "criadoEm": "2020-07-25T17:20:48.821Z",
+    "expiraEm": "2020-11-18T11:07:28.821Z"
+}

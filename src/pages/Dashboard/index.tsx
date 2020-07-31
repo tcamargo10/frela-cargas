@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Dimensions } from "react-native";
-import Icon from "react-native-vector-icons/Feather";
-
-import formatValue from "../../utils/formatValue";
+import { useNavigation } from "@react-navigation/native";
+import IconFA from "react-native-vector-icons/FontAwesome5";
+import IconEntypo from "react-native-vector-icons/Entypo";
+import dados from "./dados.json";
 
 import {
     Container,
-    Header,
-    HeaderTitle,
-    UserName,
     ProductsList,
     ProductContainer,
-    ProductImage,
     ProductInfo,
     ProductMeta,
-    ProviderMetaText,
     ProductName,
     ProductMetaPrice,
+    ContainerAdress,
+    ProductColeta,
+    ProductDestino,
+    AreaAdress,
+    TitleAddress,
+    AreaName,
+    Header,
+    ActionButton,
+    Logo,
 } from "./styles";
 
 export interface Product {
@@ -25,79 +29,77 @@ export interface Product {
     quantidade?: number;
     preco: number;
     vendedor: number;
+    coleta: string;
+    destino: string;
     imagem: string;
     ativo?: boolean;
 }
 
 const Dashboard: React.FC = () => {
+    const navigation = useNavigation();
     const [products, setProducts] = useState<Product[]>([]);
-    const numColumns = 2;
+    const numColumns = 1;
+
     useEffect(() => {
-        setProducts([
-            {
-                _id: 1,
-                sku: "Produto 01",
-                preco: 11.95,
-                vendedor: 3,
-                imagem:
-                    "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/pizzas.png",
-            },
-            {
-                _id: 2,
-                sku: "Produto 02",
-                preco: 5.5,
-                vendedor: 3,
-                imagem:
-                    "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/carnes.png",
-            },
-            {
-                _id: 3,
-                sku: "Produto 03",
-                preco: 30.0,
-                vendedor: 1,
-                imagem:
-                    "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-gorestaurant-mobile/ao_molho.png",
-            },
-            {
-                _id: 4,
-                sku: "Produto 04",
-                preco: 25.95,
-                vendedor: 5,
-                imagem:
-                    "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
-            },
-            {
-                _id: 5,
-                sku: "Produto 05",
-                preco: 23.99,
-                vendedor: 3,
-                imagem:
-                    "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png",
-            },
-        ]);
+        setProducts(dados);
     }, []);
+
     return (
         <Container>
+            <Header>
+                <ActionButton>
+                    <IconFA name="chevron-left" size={20} color={"white"} />
+                </ActionButton>
+                <ActionButton>
+                    <Logo
+                        source={require("../../../assets/logo.png")}
+                        resizeMode="contain"
+                    />
+                </ActionButton>
+                <ActionButton>
+                    <IconEntypo name="dots-three-vertical" size={20} />
+                </ActionButton>
+            </Header>
+
             <ProductsList
                 data={products}
-                keyExtractor={(product): any => product._id}
+                keyExtractor={item => item._id}
                 numColumns={numColumns}
-                renderItem={({ item: product }) => (
+                renderItem={({ item }: { item: products }) => (
                     <ProductContainer
-                        style={{
-                            flex: 1,
-                            width: Dimensions.get("window").width / 2,
-                            margin: 6,
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
+                        onPress={() => navigation.navigate("Details")}
                     >
-                        <ProductImage source={{ uri: product.imagem }} />
                         <ProductInfo>
-                            <ProductName>{product.sku}</ProductName>
+                            <AreaName>
+                                <ProductName>{item.titulo}</ProductName>
+                            </AreaName>
+                            <ContainerAdress>
+                                <AreaAdress>
+                                    <TitleAddress>Origem</TitleAddress>
+                                    <ProductColeta>
+                                        {`${item.partida.estado} - ${
+                                            item.partida.cidade
+                                        }`}
+                                    </ProductColeta>
+                                    <ProductColeta>
+                                        {item.partida.endereco}
+                                    </ProductColeta>
+                                </AreaAdress>
+                                <AreaAdress>
+                                    <TitleAddress>Destino</TitleAddress>
+                                    <ProductDestino>
+                                        {`${item.destino.estado} - ${
+                                            item.destino.cidade
+                                        }`}
+                                    </ProductDestino>
+                                    <ProductDestino>
+                                        {item.destino.endereco}
+                                    </ProductDestino>
+                                </AreaAdress>
+                            </ContainerAdress>
                             <ProductMeta>
                                 <ProductMetaPrice>
-                                    {formatValue(product.preco)}
+                                    {`R$ ${item.preco}`}
                                 </ProductMetaPrice>
                             </ProductMeta>
                         </ProductInfo>

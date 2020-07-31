@@ -1,0 +1,87 @@
+[
+    {
+        "_id": "5f1c57c2c1284a61190e2d8d",
+        "titulo": "Transporte de materiais de confeccao",
+        "partida": {
+            "estado": "RJ",
+            "cidade": "Nova Friburgo dasda",
+            "endereco": "Rua Sara Braunes"
+        },
+        "destino": {
+            "estado": "SP",
+            "cidade": "Jardins",
+            "endereco": "Av Eng Carlos Barrini"
+        },
+        "preco": "170/ton",
+        "anunciante": "5f1c4b0b6db77c4b4271e746",
+        "criadoEm": "2020-07-25T16:01:06.973Z"
+    },
+    {
+        "_id": "5f1c57d1c1284a61190e2d8e",
+        "titulo": "Transporte de materiais de confeccao",
+        "partida": {
+            "estado": "RJ",
+            "cidade": "Nova Friburgo",
+            "endereco": "Rua Sara Braunes"
+        },
+        "destino": {
+            "estado": "RJ",
+            "cidade": "Nova Friburgo",
+            "endereco": "Rua Sara Braune"
+        },
+        "preco": "200/ton",
+        "anunciante": "5f1c4b0b6db77c4b4271e746",
+        "criadoEm": "2020-07-25T16:01:06.973Z"
+    },
+    {
+        "_id": "5f1c57e1c1284a61190e2d8f",
+        "titulo": "Transporte de materiais de confeccao",
+        "partida": {
+            "estado": "RJ",
+            "cidade": "Nova Friburgo",
+            "endereco": "Rua Sara Braunes"
+        },
+        "destino": {
+            "estado": "RJ",
+            "cidade": "Nova Friburgo",
+            "endereco": "Rua Monte Líbano"
+        },
+        "preco": "500 cheio",
+        "anunciante": "5f1c4b0b6db77c4b4271e746",
+        "criadoEm": "2020-07-25T16:01:06.973Z"
+    },
+    {
+        "_id": "5f1c5815c1284a61190e2d90",
+        "titulo": "Transporte de materiais de confeccao",
+        "partida": {
+            "estado": "RJ",
+            "cidade": "Nova Friburgo",
+            "endereco": "Rua Sara Braunes"
+        },
+        "destino": {
+            "estado": "RJ",
+            "cidade": "Bom Jardim",
+            "endereco": "Av Ladeira do Padre"
+        },
+        "preco": "55/kg",
+        "anunciante": "5f1c4b0b6db77c4b4271e746",
+        "criadoEm": "2020-07-25T16:01:06.973Z"
+    },
+    {
+        "_id": "5f1c5824c1284a61190e2d91",
+        "titulo": "Transporte de materiais de confeccao",
+        "partida": {
+            "estado": "RJ",
+            "cidade": "Nova Friburgo",
+            "endereco": "Rua Sara Braunes"
+        },
+        "destino": {
+            "estado": "RJ",
+            "cidade": "Bom Jardim",
+            "endereco": "Av Varginha"
+        },
+        "preco": "250/ton",
+        "anunciante": "5f1c4b0b6db77c4b4271e746",
+        "criadoEm": "2020-07-25T16:01:06.973Z"
+    }
+]
