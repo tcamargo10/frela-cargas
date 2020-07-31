@@ -29,31 +29,56 @@ export const Logo = styled.Image`
 
 export const Contain = styled.View`
     flex: 1;
-    padding: 20px;
+    padding: 8px;
+    margin-top: 10px;
 `;
 
-export const ClienteInfo = styled.View``;
+export const ClienteInfo = styled.View`
+    padding: 10px;
+    border: 1px solid #a9a9a9;
+    background-color: white;
+`;
 
-export const Nome = styled.Text``;
+export const Nome = styled.Text`
+    font-size: 21px;
+    font-weight: bold;
+`;
 
-export const Empresa = styled.Text``;
+export const Empresa = styled.Text`
+    font-size: 16px;
+`;
 
-export const AreaTel = styled.View``;
+export const AreaTel = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 5px;
+`;
 
-export const Fixo = styled.Text``;
+export const Boxtel = styled.View`
+    flex-direction: row;
+`;
 
-export const Whats = styled.Text``;
+export const Fixo = styled.Text`
+    font-size: 14px;
+    margin-left: 7px;
+`;
+
+export const Whats = styled.Text`
+    font-size: 14px;
+    margin-left: 10px;
+`;
 
 export const ProductInfo = styled.View`
-    flex: 1;
     padding: 10px;
+    background-color: white;
+    border: 1px solid #a9a9a9;
     align-items: center;
-    justify-content: space-between;
+    margin-top: 20px;
 `;
 
 export const ContainerAdress = styled.View`
     flex-direction: row;
-    flex: 1;
     justify-content: space-between;
     margin-top: 15px;
 `;
@@ -66,30 +91,28 @@ export const AreaAdress = styled.View`
 `;
 
 export const TitleAddress = styled.Text`
-    font-size: 17px;
+    font-size: 20px;
     font-weight: bold;
     margin: 5px;
 `;
 
 export const ProductColeta = styled.Text`
     font-family: "RobotoSlab-Regular";
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
 `;
 
 export const ProductDestino = styled.Text`
     font-family: "RobotoSlab-Regular";
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
 `;
 
-export const AreaName = styled.View`
-    flex: 1;
-`;
+export const AreaName = styled.View``;
 
 export const ProductName = styled.Text`
     font-family: "RobotoSlab-Medium";
-    font-size: 17px;
+    font-size: 19px;
     color: #3e3b47;
     text-align: center;
 `;
