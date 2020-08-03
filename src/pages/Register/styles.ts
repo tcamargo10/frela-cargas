@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
     flex: 1;
-    background: #e5e5e5;
+    background: white;
 `;
 
 export const Header = styled.View`
@@ -22,7 +22,40 @@ export const ActionButton = styled.TouchableOpacity`
     align-items: center;
 `;
 
+export const Titulo = styled.Text`
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+`;
+
+export const TextInput = styled.TextInput.attrs({
+    placeholderTextColor: "white",
+})`
+    font-size: 15px;
+    color: white;
+    height: 60px;
+    padding: 15px;
+    background-color: #232129;
+    border: 1px solid #232129;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 17px;
+
+    :focus {
+        border-color: red;
+    }
+`;
+
 export const Logo = styled.Image`
     height: 60px;
     width: 100px;
+`;
+
+export const FormArea = styled.ScrollView.attrs({
+    showsVerticalScrollIndicator: false,
+})`
+    flex: 1;
+    padding: 25px;
+    margin-bottom: 5px;
+    }
 `;

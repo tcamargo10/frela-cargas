@@ -37,6 +37,7 @@ export const ClienteInfo = styled.View`
     padding: 20px;
     border: 1px solid #a9a9a9;
     background-color: white;
+    border-radius: 10px;
 `;
 
 export const Nome = styled.Text`
@@ -98,6 +99,7 @@ export const ProductInfo = styled.View`
     border: 1px solid #a9a9a9;
     align-items: center;
     margin-top: 20px;
+    border-radius: 10px;
 `;
 
 export const ContainerAdress = styled.View`
