@@ -31,19 +31,24 @@ export const Titulo = styled.Text`
 export const TextInput = styled.TextInput.attrs({
     placeholderTextColor: "white",
 })`
+    flex: 1;
+    margin: 3px;
     font-size: 15px;
     color: white;
-    height: 60px;
+    height: 50px;
     padding: 15px;
     background-color: #232129;
     border: 1px solid #232129;
     border-radius: 10px;
     margin-bottom: 15px;
-    font-size: 17px;
+    font-size: 15px;
+`;
 
-    :focus {
-        border-color: red;
-    }
+export const Area = styled.View`
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const Logo = styled.Image`

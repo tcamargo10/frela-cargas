@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import IconFA from "react-native-vector-icons/FontAwesome5";
-import IconEntypo from "react-native-vector-icons/Entypo";
+import IconFeather from "react-native-vector-icons/Feather";
 import dados from "./dados.json";
 
 import {
@@ -51,7 +51,7 @@ const Dashboard: React.FC = () => {
         <Container>
             <Header>
                 <ActionButton>
-                    <IconFA name="chevron-left" size={20} color={"white"} />
+                    <IconFA name="chevron-left" size={30} color={"white"} />
                 </ActionButton>
                 <ActionButton>
                     <Logo
@@ -59,8 +59,8 @@ const Dashboard: React.FC = () => {
                         resizeMode="contain"
                     />
                 </ActionButton>
-                <ActionButton>
-                    <IconEntypo name="dots-three-vertical" size={20} />
+                <ActionButton onPress={() => navigation.navigate("NewPost")}>
+                    <IconFeather name="plus" size={30} />
                 </ActionButton>
             </Header>
 

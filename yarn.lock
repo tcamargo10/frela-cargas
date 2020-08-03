@@ -3316,6 +3316,11 @@ hermes-engine@~0.4.0:
   resolved "https://registry.yarnpkg.com/hermes-engine/-/hermes-engine-0.4.1.tgz#2d02b295596298643c4d24b86687eb554db9e950"
   integrity sha512-Y3JFC8PD7eN3KpnrzrmvMAqp0IwnZrmP/oGOptvaSu33d7Zq/8b/2lHlZZkNvRl7/I1Q0umTX8TByK7zzLfTXA==
 
+hex-color-regex@~1.0.2:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.0.3.tgz#2175693bc292fe06711b04faee9004790926f9b0"
+  integrity sha1-IXVpO8KS/gZxGwT67pAEeQkm+bA=
+
 hoist-non-react-statics@^2.3.1:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
@@ -3605,6 +3610,13 @@ is-glob@^4.0.0, is-glob@^4.0.1:
   integrity sha512-5G0tKtBTFImOqDnLB2hG6Bp2qcKEFduo4tZu9MT/H6NQv/ghhy30o55ufafxJ/LdH79LLs2Kfrn85TLKyA7BUg==
   dependencies:
     is-extglob "^2.1.1"
+
+is-hexcolor@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-hexcolor/-/is-hexcolor-1.0.0.tgz#495fee1a12baaf009c102a799bdec3193211274a"
+  integrity sha1-SV/uGhK6rwCcECp5m97DGTIRJ0o=
+  dependencies:
+    hex-color-regex "~1.0.2"
 
 is-number@^3.0.0:
   version "3.0.0"

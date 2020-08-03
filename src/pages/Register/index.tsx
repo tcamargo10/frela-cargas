@@ -12,6 +12,7 @@ import {
     FormArea,
     Titulo,
     TextInput,
+    Area,
 } from "./styles";
 
 export interface Cadastro {
@@ -103,40 +104,46 @@ const Register: React.FC = () => {
                     value={email}
                     onChangeText={text => setEmail(text)}
                 />
-                <TextInput
-                    secureTextEntry={true}
-                    placeholder="Senha"
-                    value={password1}
-                    onChangeText={text => setPassword1(text)}
-                />
-                <TextInput
-                    secureTextEntry={true}
-                    placeholder="Repita a senha"
-                    value={password2}
-                    onChangeText={text => setPassword2(text)}
-                />
-                <TextInput
-                    placeholder="Telefone Fixo"
-                    keyboardType={"phone-pad"}
-                    value={fixo}
-                    onChangeText={text => setFixo(text)}
-                />
-                <TextInput
-                    placeholder="Whatsapp"
-                    keyboardType={"phone-pad"}
-                    value={whatsapp}
-                    onChangeText={text => setWhatsapp(text)}
-                />
-                <TextInput
-                    placeholder="Estado"
-                    value={estado}
-                    onChangeText={text => setEstado(text)}
-                />
-                <TextInput
-                    placeholder="Cidade"
-                    value={cidade}
-                    onChangeText={text => setCidade(text)}
-                />
+                <Area>
+                    <TextInput
+                        secureTextEntry={true}
+                        placeholder="Senha"
+                        value={password1}
+                        onChangeText={text => setPassword1(text)}
+                    />
+                    <TextInput
+                        secureTextEntry={true}
+                        placeholder="Repita a senha"
+                        value={password2}
+                        onChangeText={text => setPassword2(text)}
+                    />
+                </Area>
+                <Area>
+                    <TextInput
+                        placeholder="Telefone Fixo"
+                        keyboardType={"phone-pad"}
+                        value={fixo}
+                        onChangeText={text => setFixo(text)}
+                    />
+                    <TextInput
+                        placeholder="Whatsapp"
+                        keyboardType={"phone-pad"}
+                        value={whatsapp}
+                        onChangeText={text => setWhatsapp(text)}
+                    />
+                </Area>
+                <Area>
+                    <TextInput
+                        placeholder="Estado"
+                        value={estado}
+                        onChangeText={text => setEstado(text)}
+                    />
+                    <TextInput
+                        placeholder="Cidade"
+                        value={cidade}
+                        onChangeText={text => setCidade(text)}
+                    />
+                </Area>
                 <TextInput
                     placeholder="Endereço"
                     value={endereco}
