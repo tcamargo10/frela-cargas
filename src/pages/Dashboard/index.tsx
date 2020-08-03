@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import IconFA from "react-native-vector-icons/FontAwesome5";
 import IconFeather from "react-native-vector-icons/Feather";
 import dados from "./dados.json";
+import Button from "../../components/Button";
 
 import {
     Container,
@@ -22,6 +23,11 @@ import {
     Header,
     ActionButton,
     Logo,
+    Area,
+    TextInput,
+    AreaFiltro,
+    BoxInfo,
+    TitleFiltro,
 } from "./styles";
 
 export interface Product {
@@ -39,6 +45,11 @@ export interface Product {
 const Dashboard: React.FC = () => {
     const navigation = useNavigation();
     const [loading, setloading] = useState(true);
+    const [partestado, setPartEstado] = useState("");
+    const [partcidade, setPartCidade] = useState("");
+    const [destestado, setDestEstado] = useState("");
+    const [destcidade, setDestCidade] = useState("");
+    const [showfilter, setShowFilter] = useState(false);
     const [products, setProducts] = useState<Product[]>([]);
     const numColumns = 1;
 
@@ -46,6 +57,10 @@ const Dashboard: React.FC = () => {
         setProducts(dados);
         setloading(false);
     }, []);
+
+    const handlesearch = () => {
+        setShowFilter(!showfilter);
+    };
 
     return (
         <Container>
@@ -63,6 +78,53 @@ const Dashboard: React.FC = () => {
                     <IconFeather name="plus" size={30} />
                 </ActionButton>
             </Header>
+
+            <BoxInfo onPress={() => setShowFilter(!showfilter)}>
+                <IconFeather name="filter" size={25} />
+                <TitleFiltro>Pesquise anuncios por região</TitleFiltro>
+            </BoxInfo>
+
+            {showfilter && (
+                <AreaFiltro>
+                    <Area>
+                        <TextInput
+                            placeholder="Estado"
+                            value={partestado}
+                            onChangeText={text => setPartEstado(text)}
+                        />
+                        <TextInput
+                            placeholder="Cidade"
+                            value={partcidade}
+                            onChangeText={text => setPartCidade(text)}
+                        />
+                    </Area>
+
+                    <Area>
+                        <TextInput
+                            placeholder="Estado"
+                            value={destestado}
+                            onChangeText={text => setDestEstado(text)}
+                        />
+                        <TextInput
+                            placeholder="Cidade"
+                            value={destcidade}
+                            onChangeText={text => setDestCidade(text)}
+                        />
+                    </Area>
+
+                    <Button
+                        style={{
+                            marginBottom: 20,
+                            marginTop: 10,
+                            width: "50%",
+                            alignItems: "center",
+                        }}
+                        onPress={handlesearch}
+                    >
+                        Pesquisar
+                    </Button>
+                </AreaFiltro>
+            )}
 
             {!loading ? (
                 <ProductsList

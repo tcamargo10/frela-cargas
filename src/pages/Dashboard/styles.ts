@@ -20,6 +20,49 @@ export const Header = styled.View`
     elevation: 3;
 `;
 
+export const AreaFiltro = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+`;
+
+export const BoxInfo = styled.TouchableOpacity`
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+`;
+
+export const TitleFiltro = styled.Text`
+    font-size: 20px;
+    margin-left: 10px;
+`;
+
+export const TextInput = styled.TextInput.attrs({
+    placeholderTextColor: "white",
+})`
+    flex: 1;
+    margin: 5px;
+    font-size: 15px;
+    color: white;
+    height: 45px;
+    padding: 15px;
+    background-color: #232129;
+    border: 1px solid #232129;
+    border-radius: 10px;
+    font-size: 15px;
+`;
+
+export const Area = styled.View`
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+`;
+
 export const ActionButton = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;

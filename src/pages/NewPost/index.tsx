@@ -21,7 +21,7 @@ const NewPost: React.FC = () => {
     const navigation = useNavigation();
 
     const [titulo, setTitulo] = useState("");
-    const [partestado, setName] = useState("");
+    const [partestado, setPartEstado] = useState("");
     const [partcidade, setPartCidade] = useState("");
     const [partendereco, setPartEndereco] = useState("");
     const [destestado, setDestEstado] = useState("");
