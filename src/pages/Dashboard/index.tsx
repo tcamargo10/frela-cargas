@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator } from "react-native";
+import Geolocation from "react-native-geolocation-service";
+import { ActivityIndicator, PermissionsAndroid } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import IconFA from "react-native-vector-icons/FontAwesome5";
 import IconFeather from "react-native-vector-icons/Feather";
@@ -51,13 +52,47 @@ const Dashboard: React.FC = () => {
     const [destestado, setDestEstado] = useState("");
     const [destcidade, setDestCidade] = useState("");
     const [showfilter, setShowFilter] = useState(false);
+    const [hasLocationPermission, sethasLocationPermission] = useState(false);
+    const [userPosition, setUserPosition] = useState();
     const [products, setProducts] = useState<Product[]>([]);
     const numColumns = 1;
 
     useEffect(() => {
         setProducts(dados);
         setloading(false);
-    }, []);
+
+        VerifyPermission();
+
+        if (hasLocationPermission) {
+            Geolocation.getCurrentPosition(
+                position => {
+                    setUserPosition({
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
+                    });
+                },
+                error => {
+                    console.log(error.code, error.message);
+                },
+                { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
+            );
+        }
+    }, [hasLocationPermission]);
+
+    async function VerifyPermission() {
+        try {
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+            );
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                sethasLocationPermission(true);
+            } else {
+                sethasLocationPermission(false);
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const handlesearch = () => {
         setShowFilter(!showfilter);
@@ -92,6 +127,11 @@ const Dashboard: React.FC = () => {
 
             {showfilter && (
                 <AreaFiltro>
+                    <TextLogo>{`Latitude: ${userPosition.latitude}`}</TextLogo>
+                    <TextLogo>{`Longitude: ${
+                        userPosition.longitude
+                    }`}</TextLogo>
+
                     <Area>
                         <TextInput
                             placeholder="Estado de Origem"

@@ -16,8 +16,8 @@ const AuthRoutes: React.FC = () => {
                 cardStyle: {},
             }}
         >
-            <Auth.Screen name="SignIn" component={SignIn} />
             <Auth.Screen name="Dashboard" component={Dashboard} />
+            <Auth.Screen name="SignIn" component={SignIn} />
             <Auth.Screen name="Details" component={Details} />
             <Auth.Screen name="Register" component={Register} />
             <Auth.Screen name="NewPost" component={NewPost} />
