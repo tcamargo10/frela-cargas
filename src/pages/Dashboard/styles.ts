@@ -139,6 +139,30 @@ export const AreaName = styled.View`
     flex: 1;
 `;
 
+export const ButtonLocalizacao = styled.TouchableOpacity`
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 300px;
+`;
+
+export const TitleLocalizacao = styled.Text`
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff8038;
+`;
+
+export const Localizacao = styled.Text`
+    font-size: 15px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #ff8038;
+`;
+
 export const ProductName = styled.Text`
     font-family: "RobotoSlab-Medium";
     font-size: 18px;

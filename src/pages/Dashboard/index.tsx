@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Geolocation from "react-native-geolocation-service";
+import Geocoder from "react-native-geocoder";
 import { ActivityIndicator, PermissionsAndroid } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import IconFA from "react-native-vector-icons/FontAwesome5";
@@ -24,6 +25,9 @@ import {
     Header,
     ActionButton,
     Logo,
+    Localizacao,
+    TitleLocalizacao,
+    ButtonLocalizacao,
     Area,
     TextInput,
     AreaFiltro,
@@ -53,7 +57,9 @@ const Dashboard: React.FC = () => {
     const [destcidade, setDestCidade] = useState("");
     const [showfilter, setShowFilter] = useState(false);
     const [hasLocationPermission, sethasLocationPermission] = useState(false);
-    const [userPosition, setUserPosition] = useState();
+    const [geoestado, setGeoEstado] = useState("");
+    const [geocidade, setGeoCidade] = useState("");
+    const [userPosition, setUserPosition] = useState({ lat: "", lng: "" });
     const [products, setProducts] = useState<Product[]>([]);
     const numColumns = 1;
 
@@ -62,21 +68,7 @@ const Dashboard: React.FC = () => {
         setloading(false);
 
         VerifyPermission();
-
-        if (hasLocationPermission) {
-            Geolocation.getCurrentPosition(
-                position => {
-                    setUserPosition({
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                    });
-                },
-                error => {
-                    console.log(error.code, error.message);
-                },
-                { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
-            );
-        }
+        GetLocation();
     }, [hasLocationPermission]);
 
     async function VerifyPermission() {
@@ -91,6 +83,39 @@ const Dashboard: React.FC = () => {
             }
         } catch (err) {
             console.log(err);
+        }
+    }
+
+    const handlemylocation = () => {
+        if (userPosition.lat !== "") {
+            Geocoder.geocodePosition(userPosition)
+                .then(res => {
+                    setGeoCidade(res[0].subAdminArea);
+                    setGeoEstado(res[0].adminArea);
+
+                    setPartEstado(res[0].subAdminArea);
+                    setPartCidade(res[0].adminArea);
+                })
+                .catch(err => console.log(err));
+        } else {
+            alert("Não foi possivel encontrar sua localização!");
+        }
+    };
+
+    async function GetLocation() {
+        if (hasLocationPermission) {
+            await Geolocation.getCurrentPosition(
+                position => {
+                    setUserPosition({
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    });
+                },
+                error => {
+                    console.log(error.code, error.message);
+                },
+                { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 },
+            );
         }
     }
 
@@ -127,10 +152,12 @@ const Dashboard: React.FC = () => {
 
             {showfilter && (
                 <AreaFiltro>
-                    <TextLogo>{`Latitude: ${userPosition.latitude}`}</TextLogo>
-                    <TextLogo>{`Longitude: ${
-                        userPosition.longitude
-                    }`}</TextLogo>
+                    <ButtonLocalizacao onPress={handlemylocation}>
+                        <TitleLocalizacao>
+                            Utilizar minha localização
+                        </TitleLocalizacao>
+                    </ButtonLocalizacao>
+                    <Localizacao>{`${geocidade} / ${geoestado}`}</Localizacao>
 
                     <Area>
                         <TextInput
@@ -160,8 +187,8 @@ const Dashboard: React.FC = () => {
 
                     <Button
                         style={{
-                            marginBottom: 20,
-                            marginTop: 10,
+                            marginBottom: 10,
+                            marginTop: 5,
                             width: "50%",
                             alignItems: "center",
                         }}
