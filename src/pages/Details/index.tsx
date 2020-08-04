@@ -23,6 +23,7 @@ import {
     AreaName,
     Contain,
     ClienteInfo,
+    TextLogo,
     Nome,
     Boxdata,
     Empresa,
@@ -66,16 +67,21 @@ const Details: React.FC = () => {
         <Container>
             <Header>
                 <ActionButton onPress={() => navigation.goBack()}>
-                    <IconFA name="chevron-left" size={15} />
+                    <IconFA name="chevron-left" size={20} color={"white"} />
                 </ActionButton>
                 <ActionButton>
-                    <Logo
+                    {/*<Logo
                         source={require("../../../assets/logo.png")}
                         resizeMode="contain"
-                    />
+                    />*/}
+                    <TextLogo>Senatran</TextLogo>
                 </ActionButton>
                 <ActionButton>
-                    <IconEntypo name="dots-three-vertical" size={20} />
+                    <IconEntypo
+                        name="dots-three-vertical"
+                        size={20}
+                        color={"transparent"}
+                    />
                 </ActionButton>
             </Header>
 

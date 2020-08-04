@@ -28,6 +28,7 @@ import {
     AreaFiltro,
     BoxInfo,
     TitleFiltro,
+    TextLogo,
 } from "./styles";
 
 export interface Product {
@@ -66,21 +67,26 @@ const Dashboard: React.FC = () => {
         <Container>
             <Header>
                 <ActionButton>
-                    <IconFA name="chevron-left" size={30} color={"white"} />
-                </ActionButton>
-                <ActionButton>
-                    <Logo
-                        source={require("../../../assets/logo.png")}
-                        resizeMode="contain"
+                    <IconFA
+                        name="chevron-left"
+                        size={30}
+                        color={"transparent"}
                     />
                 </ActionButton>
+                <ActionButton>
+                    {/*<Logo
+                        source={require("../../../assets/logo.png")}
+                        resizeMode="contain"
+                    />*/}
+                    <TextLogo>Senatran</TextLogo>
+                </ActionButton>
                 <ActionButton onPress={() => navigation.navigate("NewPost")}>
-                    <IconFeather name="plus" size={30} />
+                    <IconFeather name="plus" size={30} color={"white"} />
                 </ActionButton>
             </Header>
 
             <BoxInfo onPress={() => setShowFilter(!showfilter)}>
-                <IconFeather name="filter" size={25} />
+                <IconFeather name="filter" size={25} color={"white"} />
                 <TitleFiltro>Pesquise anuncios por região</TitleFiltro>
             </BoxInfo>
 
@@ -88,12 +94,12 @@ const Dashboard: React.FC = () => {
                 <AreaFiltro>
                     <Area>
                         <TextInput
-                            placeholder="Estado"
+                            placeholder="Estado de Origem"
                             value={partestado}
                             onChangeText={text => setPartEstado(text)}
                         />
                         <TextInput
-                            placeholder="Cidade"
+                            placeholder="Cidade de Origem"
                             value={partcidade}
                             onChangeText={text => setPartCidade(text)}
                         />
@@ -101,12 +107,12 @@ const Dashboard: React.FC = () => {
 
                     <Area>
                         <TextInput
-                            placeholder="Estado"
+                            placeholder="Estado de Destino"
                             value={destestado}
                             onChangeText={text => setDestEstado(text)}
                         />
                         <TextInput
-                            placeholder="Cidade"
+                            placeholder="Cidade de Destino"
                             value={destcidade}
                             onChangeText={text => setDestCidade(text)}
                         />

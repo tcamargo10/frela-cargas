@@ -5,7 +5,7 @@ import { Product } from "./index";
 
 export const Container = styled.View`
     flex: 1;
-    background: #e5e5e5;
+    background: #033249;
 `;
 
 export const Header = styled.View`
@@ -15,8 +15,8 @@ export const Header = styled.View`
     align-items: center;
     padding-left: 25px;
     padding-right: 25px;
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: #ff8038;
+    border: 1px solid #ff803d;
     elevation: 3;
 `;
 
@@ -38,6 +38,13 @@ export const BoxInfo = styled.TouchableOpacity`
 export const TitleFiltro = styled.Text`
     font-size: 20px;
     margin-left: 10px;
+    color: white;
+`;
+
+export const TextLogo = styled.Text`
+    font-size: 27px;
+    color: white;
+    font-family: "Work Sans SemiBold";
 `;
 
 export const TextInput = styled.TextInput.attrs({
@@ -118,13 +125,13 @@ export const TitleAddress = styled.Text`
 
 export const ProductColeta = styled.Text`
     font-family: "RobotoSlab-Regular";
-    font-size: 12px;
+    font-size: 13px;
     text-align: center;
 `;
 
 export const ProductDestino = styled.Text`
     font-family: "RobotoSlab-Regular";
-    font-size: 12px;
+    font-size: 13px;
     text-align: center;
 `;
 
@@ -134,7 +141,8 @@ export const AreaName = styled.View`
 
 export const ProductName = styled.Text`
     font-family: "RobotoSlab-Medium";
-    font-size: 17px;
+    font-size: 18px;
+    font-weight: bold;
     color: #3e3b47;
     text-align: center;
 `;
@@ -149,7 +157,7 @@ export const ProductMetaPrice = styled.Text`
     font-family: "RobotoSlab-Regular";
     font-size: 24px;
     font-weight: bold;
-    color: #d98b54;
+    color: #ff8038;
     flex: 1;
     text-align: center;
 `;

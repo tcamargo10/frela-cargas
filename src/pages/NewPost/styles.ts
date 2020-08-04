@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
     flex: 1;
-    background: white;
+    background: #033249;
 `;
 
 export const Header = styled.View`
@@ -12,9 +12,15 @@ export const Header = styled.View`
     align-items: center;
     padding-left: 25px;
     padding-right: 25px;
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: #ff8038;
+    border: 1px solid #ff803d;
     elevation: 3;
+`;
+
+export const TextLogo = styled.Text`
+    font-size: 27px;
+    color: white;
+    font-family: "Work Sans SemiBold";
 `;
 
 export const ActionButton = styled.TouchableOpacity`
@@ -26,22 +32,21 @@ export const Titulo = styled.Text`
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: white;
 `;
 
 export const TextInput = styled.TextInput.attrs({
-    placeholderTextColor: "white",
+    placeholderTextColor: "#666360",
 })`
     flex: 1;
     margin: 3px;
-    font-size: 15px;
-    color: white;
-    height: 50px;
+    height: 45px;
     padding: 15px;
-    background-color: #232129;
+    background-color: white;
     border: 1px solid #232129;
     border-radius: 10px;
-    margin-bottom: 15px;
-    font-size: 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
 `;
 
 export const Logo = styled.Image`
@@ -61,13 +66,14 @@ export const AreaGroup = styled.View`
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 10px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 `;
 
 export const SubTitle = styled.Text`
     font-size: 18px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: white;
 `;
 
 export const FormArea = styled.ScrollView.attrs({

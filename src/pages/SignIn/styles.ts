@@ -5,12 +5,12 @@ export const Container = styled.View`
     flex: 1;
     align-items: center;
     padding: 0 30px;
-    background-color: white;
+    background-color: #033249;
 `;
 
 export const Logo = styled.Image`
-    height: 100px;
-    width: 100px;
+    height: 180px;
+    width: 180px;
     margin-bottom: 20px;
     margin-top: 80px;
 `;
@@ -18,6 +18,7 @@ export const Logo = styled.Image`
 export const Title = styled.Text`
     font-size: 24px;
     font-family: "RobotoSlab-Medium";
+    color: white;
     margin: 0 0 24px 0;
 `;
 
@@ -34,5 +35,5 @@ export const AreaRegister = styled.TouchableOpacity`
 
 export const Register = styled.Text`
     font-size: 15px;
-    color: gray;
+    color: #ddd;
 `;

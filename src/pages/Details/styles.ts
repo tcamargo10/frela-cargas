@@ -1,8 +1,8 @@
 import styled from "styled-components/native";
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
     flex: 1;
-    background: #e5e5e5;
+    background: #033249;
 `;
 
 export const Header = styled.View`
@@ -12,9 +12,15 @@ export const Header = styled.View`
     align-items: center;
     padding-left: 25px;
     padding-right: 25px;
-    background-color: white;
-    border: 1px solid #ddd;
+    background-color: #ff8038;
+    border: 1px solid #ff803d;
     elevation: 3;
+`;
+
+export const TextLogo = styled.Text`
+    font-size: 27px;
+    color: white;
+    font-family: "Work Sans SemiBold";
 `;
 
 export const ActionButton = styled.TouchableOpacity`
@@ -139,6 +145,7 @@ export const ProductName = styled.Text`
     font-family: "RobotoSlab-Medium";
     font-size: 19px;
     color: #3e3b47;
+    font-weight: bold;
     text-align: center;
 `;
 
@@ -152,7 +159,7 @@ export const ProductMetaPrice = styled.Text`
     font-family: "RobotoSlab-Regular";
     font-size: 24px;
     font-weight: bold;
-    color: #d98b54;
+    color: #ff8038;
     flex: 1;
     text-align: center;
 `;

@@ -11,6 +11,7 @@ import {
     Logo,
     FormArea,
     Titulo,
+    TextLogo,
     TextInput,
     SubTitle,
     Area,
@@ -40,19 +41,20 @@ const NewPost: React.FC = () => {
         <Container>
             <Header>
                 <ActionButton onPress={() => navigation.goBack()}>
-                    <IconFA name="chevron-left" size={20} />
+                    <IconFA name="chevron-left" size={20} color={"white"} />
                 </ActionButton>
                 <ActionButton>
-                    <Logo
+                    {/*<Logo
                         source={require("../../../assets/logo.png")}
                         resizeMode="contain"
-                    />
+                    />*/}
+                    <TextLogo>Senatran</TextLogo>
                 </ActionButton>
                 <ActionButton>
                     <IconEntypo
                         name="dots-three-vertical"
                         size={20}
-                        color={"white"}
+                        color={"transparent"}
                     />
                 </ActionButton>
             </Header>
@@ -118,7 +120,7 @@ const NewPost: React.FC = () => {
                         handleConfirm;
                     }}
                 >
-                    Entrar
+                    Cadastrar
                 </Button>
             </FormArea>
         </Container>

@@ -13,6 +13,7 @@ import {
     Titulo,
     TextInput,
     Area,
+    TextLogo,
 } from "./styles";
 
 export interface Cadastro {
@@ -69,19 +70,20 @@ const Register: React.FC = () => {
         <Container>
             <Header>
                 <ActionButton onPress={() => navigation.goBack()}>
-                    <IconFA name="chevron-left" size={20} />
+                    <IconFA name="chevron-left" size={20} color={"white"} />
                 </ActionButton>
                 <ActionButton>
-                    <Logo
+                    {/*<Logo
                         source={require("../../../assets/logo.png")}
                         resizeMode="contain"
-                    />
+                    />*/}
+                    <TextLogo>Senatran</TextLogo>
                 </ActionButton>
                 <ActionButton>
                     <IconEntypo
                         name="dots-three-vertical"
                         size={20}
-                        color={"white"}
+                        color={"transparent"}
                     />
                 </ActionButton>
             </Header>
@@ -150,7 +152,7 @@ const Register: React.FC = () => {
                     onChangeText={text => setEndereco(text)}
                 />
                 <Button
-                    style={{ marginBottom: 60, marginTop: 30 }}
+                    style={{ marginBottom: 50, marginTop: 10 }}
                     onPress={() => {
                         handleConfirm;
                     }}
