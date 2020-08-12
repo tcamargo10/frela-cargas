@@ -58,36 +58,40 @@ const Register: React.FC = () => {
             cidade !== "" &&
             endereco !== ""
         ) {
-            if (password1 == password2) {
-                await api
-                    .post("/user/create", {
-                        name: name,
-                        email: email,
-                        password: password1,
-                        nomeDaEmpresa: empresa,
-                        telefone: {
-                            fixo: fixo,
-                            whatsapp: whatsapp,
-                        },
-                        localizacao: {
-                            estado: estado,
-                            cidade: cidade,
-                            endereco: endereco,
-                        },
-                    })
-                    .then(function(response) {
-                        if (response.data.err) {
-                            Alert.alert("Erro", response.data.err);
-                        } else {
-                            Alert.alert("Sucesso", "Cadastro realizado!");
-                            navigation.navigate("SignIn");
-                        }
-                    })
-                    .catch(error => {
-                        Alert.alert("Erro", error);
-                    });
+            if (fixo.length > 9 && whatsapp.length > 9) {
+                if (password1 == password2) {
+                    await api
+                        .post("/user/create", {
+                            name: name,
+                            email: email,
+                            password: password1,
+                            nomeDaEmpresa: empresa,
+                            telefone: {
+                                fixo: fixo,
+                                whatsapp: whatsapp,
+                            },
+                            localizacao: {
+                                estado: estado,
+                                cidade: cidade,
+                                endereco: endereco,
+                            },
+                        })
+                        .then(function(response) {
+                            if (response.data.err) {
+                                Alert.alert("Erro", response.data.err);
+                            } else {
+                                Alert.alert("Sucesso", "Cadastro realizado!");
+                                navigation.navigate("SignIn");
+                            }
+                        })
+                        .catch(error => {
+                            Alert.alert("Erro", error);
+                        });
+                } else {
+                    Alert.alert("Senha", "Senhas precisam ser iguais!");
+                }
             } else {
-                Alert.alert("Senha", "Senhas precisam ser iguais!");
+                Alert.alert("Atenção", "Telefone/Whatsapp invalido!");
             }
         } else {
             Alert.alert("Atenção", "Preecha todos os campos corretamente!");
@@ -150,13 +154,13 @@ const Register: React.FC = () => {
                 </Area>
                 <Area>
                     <TextInput
-                        placeholder="Telefone Fixo"
+                        placeholder="Telefone Fixo com DDD"
                         keyboardType={"phone-pad"}
                         value={fixo}
                         onChangeText={text => setFixo(text)}
                     />
                     <TextInput
-                        placeholder="Whatsapp"
+                        placeholder="Whatsapp com DDD"
                         keyboardType={"phone-pad"}
                         value={whatsapp}
                         onChangeText={text => setWhatsapp(text)}

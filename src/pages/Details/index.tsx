@@ -89,7 +89,7 @@ const Details: React.FC = ({ route }) => {
                 {!loading ? (
                     <>
                         <ClienteInfo>
-                            <Nome>{details.name}</Nome>
+                            <Nome>{details.anunciante.name}</Nome>
                             <Empresa>{details.nomeDaEmpresa}</Empresa>
                             <Boxdata>
                                 <IconFA name="play" size={20} />
@@ -144,19 +144,21 @@ const Details: React.FC = ({ route }) => {
                             <Boxtel
                                 onPress={() => {
                                     Linking.openURL(
-                                        `tel:${details.telefone.fixo}`,
+                                        `tel:${
+                                            details.anunciante.telefone.fixo
+                                        }`,
                                     );
                                 }}
                             >
                                 <IconFA name="phone" size={30} />
                                 <Fixo>
-                                    {`(${details.telefone.fixo.substring(
+                                    {`(${details.anunciante.telefone.fixo.substring(
                                         0,
                                         2,
-                                    )}) ${details.telefone.fixo.substring(
+                                    )}) ${details.anunciante.telefone.fixo.substring(
                                         2,
                                         6,
-                                    )}-${details.telefone.fixo.substring(
+                                    )}-${details.anunciante.telefone.fixo.substring(
                                         6,
                                         12,
                                     )}`}
@@ -166,7 +168,7 @@ const Details: React.FC = ({ route }) => {
                                 onPress={() =>
                                     Linking.openURL(
                                         `https://wa.me/${
-                                            details.telefone.whatsapp
+                                            details.anunciante.telefone.whatsapp
                                         }?text=${mensagemwhatsapp}`,
                                     )
                                 }
@@ -177,13 +179,13 @@ const Details: React.FC = ({ route }) => {
                                     color={"green"}
                                 />
                                 <Whats>
-                                    {`(${details.telefone.whatsapp.substring(
+                                    {`(${details.anunciante.telefone.whatsapp.substring(
                                         0,
                                         2,
-                                    )}) ${details.telefone.whatsapp.substring(
+                                    )}) ${details.anunciante.telefone.whatsapp.substring(
                                         2,
                                         7,
-                                    )}-${details.telefone.whatsapp.substring(
+                                    )}-${details.anunciante.telefone.whatsapp.substring(
                                         7,
                                         12,
                                     )}`}

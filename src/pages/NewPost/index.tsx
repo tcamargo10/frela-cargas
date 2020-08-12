@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert } from "react-native";
+import { Alert, AsyncStorage } from "react-native";
 import IconFA from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
 import { useNavigation } from "@react-navigation/native";
@@ -43,21 +43,31 @@ const NewPost: React.FC = () => {
             destendereco !== "" &&
             preco !== ""
         ) {
+            const headers = {
+                Auth: await AsyncStorage.getItem("token"),
+            };
+
             await api
-                .post("/anuncio", {
-                    titulo: titulo,
-                    preco: preco,
-                    partida: {
-                        estado: partestado,
-                        cidade: partcidade,
-                        endereco: partendereco,
+                .post(
+                    "/anuncio/create",
+                    {
+                        titulo: titulo,
+                        partida: {
+                            estado: partestado,
+                            cidade: partcidade,
+                            endereco: partendereco,
+                        },
+                        destino: {
+                            estado: destestado,
+                            cidade: destcidade,
+                            endereco: destendereco,
+                        },
+                        preco: preco,
                     },
-                    destino: {
-                        estado: destestado,
-                        cidade: destcidade,
-                        endereco: destendereco,
+                    {
+                        headers: headers,
                     },
-                })
+                )
                 .then(function(response) {
                     if (response.data.err) {
                         Alert.alert("Erro", response.data.err);
@@ -66,7 +76,7 @@ const NewPost: React.FC = () => {
                     }
                 })
                 .catch(error => {
-                    Alert.alert("Erro", "Erro ao cadastrar novo anuncio!");
+                    Alert.alert("Erro", error);
                 });
         } else {
             Alert.alert("Atenção", "Preencha todos os campos!");
@@ -146,15 +156,13 @@ const NewPost: React.FC = () => {
                     />
                 </AreaGroup>
                 <TextInput
-                    placeholder="Valor"
+                    placeholder="Preço - Ex: 150/ton"
                     value={preco}
                     onChangeText={text => setPreco(text)}
                 />
                 <Button
                     style={{ marginBottom: 60, marginTop: 30 }}
-                    onPress={() => {
-                        handleConfirm;
-                    }}
+                    onPress={handleConfirm}
                 >
                     Cadastrar
                 </Button>

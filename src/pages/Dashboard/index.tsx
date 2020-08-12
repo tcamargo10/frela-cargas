@@ -71,8 +71,6 @@ const Dashboard: React.FC = () => {
     const numColumns = 1;
 
     useEffect(() => {
-        setloading(false);
-
         VerifyPermission();
         GetLocation();
     }, [hasLocationPermission]);
@@ -97,6 +95,8 @@ const Dashboard: React.FC = () => {
                 .catch(error => {
                     Alert.alert("Erro", error);
                 });
+
+            setloading(false);
         }
         getposts();
     }, []);
@@ -128,7 +128,7 @@ const Dashboard: React.FC = () => {
                 })
                 .catch(err => console.log(err));
         } else {
-            alert("Não foi possivel encontrar sua localização!");
+            Alert.alert("Erro", "Não foi possivel encontrar sua localização!");
         }
     };
 
@@ -149,15 +149,36 @@ const Dashboard: React.FC = () => {
         }
     }
 
-    const handlesearch = () => {
+    const handlesearch = async () => {
         setShowFilter(!showfilter);
+        setloading(true);
+
+        await api
+            .post("/anuncio", {
+                estadoDestino: destestado,
+                cidadeDestino: destcidade,
+                estadoPartida: partestado,
+                cidadePartida: partcidade,
+            })
+            .then(function(response) {
+                if (response.data.err) {
+                    Alert.alert("Erro", response.data.err);
+                } else {
+                    setProducts(response.data);
+                }
+            })
+            .catch(error => {
+                Alert.alert("Erro", error);
+            });
+
+        setloading(false);
     };
 
     const handleNewPost = () => {
         if (login) {
             navigation.navigate("NewPost");
         } else {
-            alert("Logue para criar um novo anuncio!");
+            Alert.alert("Atenção", "Logue para criar um novo anuncio!");
             navigation.navigate("SignIn");
         }
     };
@@ -282,7 +303,7 @@ const Dashboard: React.FC = () => {
                                 </ContainerAdress>
                                 <ProductMeta>
                                     <ProductMetaPrice>
-                                        {`R$ ${item.preco.preco}`}
+                                        {`R$ ${item.preco}`}
                                     </ProductMetaPrice>
                                 </ProductMeta>
                             </ProductInfo>
