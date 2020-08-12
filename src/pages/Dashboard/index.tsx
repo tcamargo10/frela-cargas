@@ -67,7 +67,7 @@ const Dashboard: React.FC = () => {
     const [geoestado, setGeoEstado] = useState("");
     const [geocidade, setGeoCidade] = useState("");
     const [userPosition, setUserPosition] = useState({ lat: "", lng: "" });
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState([]);
     const numColumns = 1;
 
     useEffect(() => {
@@ -153,23 +153,45 @@ const Dashboard: React.FC = () => {
         setShowFilter(!showfilter);
         setloading(true);
 
-        await api
-            .post("/anuncio", {
-                estadoDestino: destestado,
-                cidadeDestino: destcidade,
-                estadoPartida: partestado,
-                cidadePartida: partcidade,
-            })
-            .then(function(response) {
-                if (response.data.err) {
-                    Alert.alert("Erro", response.data.err);
-                } else {
-                    setProducts(response.data);
-                }
-            })
-            .catch(error => {
-                Alert.alert("Erro", error);
-            });
+        if (
+            destestado == "" &&
+            destcidade == "" &&
+            partestado == "" &&
+            partcidade == ""
+        ) {
+            await api
+                .get("/anuncio/all")
+                .then(function(response) {
+                    if (response.data.err) {
+                        Alert.alert("Erro", response.data.err);
+                    } else {
+                        setProducts(response.data);
+                    }
+                })
+                .catch(error => {
+                    Alert.alert("Erro", error);
+                });
+        } else {
+            await api
+                .post("/anuncio", {
+                    estadoDestino: destestado,
+                    cidadeDestino: destcidade,
+                    estadoPartida: partestado,
+                    cidadePartida: partcidade,
+                })
+                .then(function(response) {
+                    if (response.data.err) {
+                        Alert.alert("Erro", response.data.err);
+                    } else {
+                        if (response.data.anunciosFiltrados) {
+                            setProducts(response.data.anunciosFiltrados);
+                        }
+                    }
+                })
+                .catch(error => {
+                    Alert.alert("Erro", error);
+                });
+        }
 
         setloading(false);
     };
@@ -185,6 +207,7 @@ const Dashboard: React.FC = () => {
 
     const handleLogout = async () => {
         await AsyncStorage.removeItem("token");
+        setLogin(false);
         navigation.navigate("SignIn");
     };
 
