@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Geolocation from "react-native-geolocation-service";
 import Geocoder from "react-native-geocoder";
-import { ActivityIndicator, PermissionsAndroid } from "react-native";
+import {
+    Alert,
+    AsyncStorage,
+    ActivityIndicator,
+    PermissionsAndroid,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import IconFA from "react-native-vector-icons/FontAwesome5";
 import IconFeather from "react-native-vector-icons/Feather";
-import dados from "./dados.json";
+import IconSimple from "react-native-vector-icons/SimpleLineIcons";
+import api from "../../utils/api";
 import Button from "../../components/Button";
 
 import {
@@ -51,6 +57,7 @@ export interface Product {
 const Dashboard: React.FC = () => {
     const navigation = useNavigation();
     const [loading, setloading] = useState(true);
+    const [login, setLogin] = useState(false);
     const [partestado, setPartEstado] = useState("");
     const [partcidade, setPartCidade] = useState("");
     const [destestado, setDestEstado] = useState("");
@@ -64,12 +71,35 @@ const Dashboard: React.FC = () => {
     const numColumns = 1;
 
     useEffect(() => {
-        setProducts(dados);
         setloading(false);
 
         VerifyPermission();
         GetLocation();
     }, [hasLocationPermission]);
+
+    useEffect(() => {
+        async function getposts() {
+            const token = await AsyncStorage.getItem("token");
+
+            if (token) {
+                setLogin(true);
+            }
+
+            await api
+                .get("/anuncio/all")
+                .then(function(response) {
+                    if (response.data.err) {
+                        Alert.alert("Erro", response.data.err);
+                    } else {
+                        setProducts(response.data);
+                    }
+                })
+                .catch(error => {
+                    Alert.alert("Erro", error);
+                });
+        }
+        getposts();
+    }, []);
 
     async function VerifyPermission() {
         try {
@@ -123,15 +153,25 @@ const Dashboard: React.FC = () => {
         setShowFilter(!showfilter);
     };
 
+    const handleNewPost = () => {
+        if (login) {
+            navigation.navigate("NewPost");
+        } else {
+            alert("Logue para criar um novo anuncio!");
+            navigation.navigate("SignIn");
+        }
+    };
+
+    const handleLogout = async () => {
+        await AsyncStorage.removeItem("token");
+        navigation.navigate("SignIn");
+    };
+
     return (
         <Container>
             <Header>
-                <ActionButton>
-                    <IconFA
-                        name="chevron-left"
-                        size={30}
-                        color={"transparent"}
-                    />
+                <ActionButton onPress={handleLogout}>
+                    <IconSimple name="logout" size={23} color={"white"} />
                 </ActionButton>
                 <ActionButton>
                     {/*<Logo
@@ -140,7 +180,7 @@ const Dashboard: React.FC = () => {
                     />*/}
                     <TextLogo>Senatran</TextLogo>
                 </ActionButton>
-                <ActionButton onPress={() => navigation.navigate("NewPost")}>
+                <ActionButton onPress={handleNewPost}>
                     <IconFeather name="plus" size={30} color={"white"} />
                 </ActionButton>
             </Header>
@@ -206,7 +246,11 @@ const Dashboard: React.FC = () => {
                     numColumns={numColumns}
                     renderItem={({ item }: { item: products }) => (
                         <ProductContainer
-                            onPress={() => navigation.navigate("Details")}
+                            onPress={() =>
+                                navigation.navigate("Details", {
+                                    anuncio: item,
+                                })
+                            }
                         >
                             <ProductInfo>
                                 <AreaName>
@@ -238,7 +282,7 @@ const Dashboard: React.FC = () => {
                                 </ContainerAdress>
                                 <ProductMeta>
                                     <ProductMetaPrice>
-                                        {`R$ ${item.preco}`}
+                                        {`R$ ${item.preco.preco}`}
                                     </ProductMetaPrice>
                                 </ProductMeta>
                             </ProductInfo>

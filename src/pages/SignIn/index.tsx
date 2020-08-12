@@ -1,7 +1,8 @@
 import React, { useRef, useCallback } from "react";
-import { TextInput, Alert } from "react-native"
+import { TextInput, Alert, AsyncStorage } from "react-native"
 import { FormHandles } from "@unform/core";
 import * as Yup from "yup";
+import api from '../../utils/api';
 import { useNavigation } from "@react-navigation/native"
 
 import Input from "../../components/Input";
@@ -33,9 +34,28 @@ const SignIn: React.FC = () => {
                 await schema.validate(data, {
                     abortEarly: false,
                 });
-                if(data.email === "admin@admin.com" && data.password === "123456"){
-                    navigation.navigate("Dashboard")
-                }
+
+                await api.post("/user/login", {email: data.email, password: data.password}).then(function (response) {
+                    if(response.data.token)
+                    {
+                        const storeData = async () => {
+                        try {
+                            await AsyncStorage.setItem(
+                              'token',
+                              response.data.token
+                            );
+                            navigation.navigate("Dashboard");
+                          } catch (error) {
+                            Alert.alert("Erro ao autenticar", "Confira seus dados e tente novamente");
+                          }
+                        }
+                        storeData();
+                    } else {
+                        Alert.alert("Erro", response.data.err);
+                    }
+                }).catch(error => {
+                    console.log(error)
+                })
             } catch (err) {
                 if (err instanceof Yup.ValidationError) {
                     const erros = getValidationErros(err);

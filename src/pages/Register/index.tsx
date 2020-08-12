@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Alert } from "react-native";
+import api from "../../utils/api";
 import { useNavigation } from "@react-navigation/native";
 import IconFA from "react-native-vector-icons/FontAwesome5";
 import IconEntypo from "react-native-vector-icons/Entypo";
@@ -43,7 +45,7 @@ const Register: React.FC = () => {
     const [cidade, setCidade] = useState("");
     const [endereco, setEndereco] = useState("");
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         if (
             empresa !== "" &&
             name !== "" &&
@@ -56,13 +58,39 @@ const Register: React.FC = () => {
             cidade !== "" &&
             endereco !== ""
         ) {
-            if (password1 !== password2) {
-                alert("Cadastro confirmado!");
+            if (password1 == password2) {
+                await api
+                    .post("/user/create", {
+                        name: name,
+                        email: email,
+                        password: password1,
+                        nomeDaEmpresa: empresa,
+                        telefone: {
+                            fixo: fixo,
+                            whatsapp: whatsapp,
+                        },
+                        localizacao: {
+                            estado: estado,
+                            cidade: cidade,
+                            endereco: endereco,
+                        },
+                    })
+                    .then(function(response) {
+                        if (response.data.err) {
+                            Alert.alert("Erro", response.data.err);
+                        } else {
+                            Alert.alert("Sucesso", "Cadastro realizado!");
+                            navigation.navigate("SignIn");
+                        }
+                    })
+                    .catch(error => {
+                        Alert.alert("Erro", error);
+                    });
             } else {
-                alert("Senhas");
+                Alert.alert("Senha", "Senhas precisam ser iguais!");
             }
         } else {
-            alert("Preecha todos os campos corretamente!");
+            Alert.alert("Atenção", "Preecha todos os campos corretamente!");
         }
     };
 
@@ -153,9 +181,7 @@ const Register: React.FC = () => {
                 />
                 <Button
                     style={{ marginBottom: 50, marginTop: 10 }}
-                    onPress={() => {
-                        handleConfirm;
-                    }}
+                    onPress={handleConfirm}
                 >
                     Entrar
                 </Button>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ActivityIndicator, Linking } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import proddetails from "./proddetails.json";
 import IconFA from "react-native-vector-icons/FontAwesome5";
 import Icon from "react-native-vector-icons/FontAwesome";
 import IconEntypo from "react-native-vector-icons/Entypo";
@@ -50,7 +49,7 @@ export interface Product {
     ativo?: boolean;
 }
 
-const Details: React.FC = () => {
+const Details: React.FC = ({ route }) => {
     const navigation = useNavigation();
     const [details, setDetails] = useState<Product[]>([]);
     const [loading, setloading] = useState(true);
@@ -59,7 +58,8 @@ const Details: React.FC = () => {
         "Ola,%20vi%20seu%20anuncio%20no%20App%20MinhaCarga";
 
     useEffect(() => {
-        setDetails(proddetails);
+        const item = route.params.anuncio;
+        setDetails(item);
         setloading(false);
     }, []);
 
